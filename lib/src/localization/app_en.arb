@@ -1,0 +1,10 @@
+{
+  "@@locale": "en",
+  "appTitle": "albums",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "loginUsername": "Username or Email",
+  "loginPassword": "Password",
+  "loginButton": "Login"
+}
