@@ -29,7 +29,7 @@ class Photo {
           url: url,
           thumbnailUrl: thumbnailUrl,
         ),
-      _ => throw const FormatException('Failed to load album.'),
+      _ => throw const FormatException('Failed to load photo.'),
     };
   }
 }

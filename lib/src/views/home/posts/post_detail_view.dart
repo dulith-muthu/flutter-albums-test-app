@@ -1,27 +1,27 @@
-import 'package:albums/src/models/api/album.dart';
-import 'package:albums/src/models/api/photo.dart';
-import 'package:albums/src/services/api/albums_service.dart';
-import 'package:albums/src/views/home/albums/photo_component.dart';
+import 'package:albums/src/models/api/comment.dart';
+import 'package:albums/src/models/api/post.dart';
+import 'package:albums/src/services/api/posts_api_service.dart';
+import 'package:albums/src/views/home/posts/comment_component.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AlbumDetailView extends StatefulWidget {
-  const AlbumDetailView({super.key, required Album album}) : _album = album;
+class PostDetailView extends StatefulWidget {
+  const PostDetailView({super.key, required Post post}) : _post = post;
 
-  static const routeName = '/album';
-  final Album _album;
+  static const routeName = '/post';
+  final Post _post;
 
   @override
-  State<AlbumDetailView> createState() => _AlbumDetailViewState();
+  State<PostDetailView> createState() => _PostDetailViewState();
 }
 
-class _AlbumDetailViewState extends State<AlbumDetailView> {
-  late Future<List<Photo>> _photos;
+class _PostDetailViewState extends State<PostDetailView> {
+  late Future<List<Comment>> _comments;
 
   @override
   void initState() {
-    final albumsApiService = context.read<AlbumsApiService>();
-    _photos = albumsApiService.fetchAlbumPhotos(widget._album.id);
+    final postsApiService = context.read<PostsApiService>();
+    _comments = postsApiService.fetchPostComments(widget._post.id);
     super.initState();
   }
 
@@ -29,12 +29,12 @@ class _AlbumDetailViewState extends State<AlbumDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget._album.title),
+          title: Text(widget._post.title),
         ),
         body: Column(
           children: [
             FutureBuilder(
-              future: _photos,
+              future: _comments,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return ErrorWidget.withDetails(
@@ -45,14 +45,12 @@ class _AlbumDetailViewState extends State<AlbumDetailView> {
                     return Expanded(
                         child: Padding(
                       padding: const EdgeInsets.all(20),
-                      child: GridView.count(
+                      child: ListView(
                           scrollDirection: Axis.vertical,
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
                           shrinkWrap: true,
                           children: snapshot.data!
-                              .map((photo) => PhotoComponent(photo: photo))
+                              .map((comment) =>
+                                  CommentComponent(comment: comment))
                               .toList()),
                     ));
                   default:

@@ -10,24 +10,19 @@ class AlbumComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      padding: const EdgeInsets.all(5),
-      color: Theme.of(context).hoverColor,
-      child: ListTile(
-        title: Text(
-          "${_album.id}",
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
-        ),
-        subtitle: Text(_album.title),
-        onTap: clickable
-            ? () {
-                Navigator.pushNamed(
-                    context, AlbumDetailView.routeName,
-                    arguments: _album);
-              }
-            : null,
+    return Card(
+        child: ListTile(
+      title: Text(
+        "${_album.id}",
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
       ),
-    );
+      subtitle: Text(_album.title),
+      onTap: clickable
+          ? () {
+              Navigator.pushNamed(context, AlbumDetailView.routeName,
+                  arguments: _album);
+            }
+          : null,
+    ));
   }
 }

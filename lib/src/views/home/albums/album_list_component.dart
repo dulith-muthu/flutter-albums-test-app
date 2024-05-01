@@ -16,8 +16,8 @@ class _AlbumsListComponentState extends State<AlbumsListComponent> {
 
   @override
   void initState() {
-    final albumApiService = context.read<AlbumsApiService>();
-    _albums = albumApiService.fetchAlbums();
+    final albumsApiService = context.read<AlbumsApiService>();
+    _albums = albumsApiService.fetchAlbums();
     super.initState();
   }
 
@@ -33,6 +33,9 @@ class _AlbumsListComponentState extends State<AlbumsListComponent> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               return ListView(
+                  padding: const EdgeInsets.all(20),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
                   children: snapshot.data!
                       .map((album) => AlbumComponent(album: album))
                       .toList());

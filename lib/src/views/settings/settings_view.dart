@@ -1,5 +1,4 @@
 import 'package:albums/src/services/auth_service.dart';
-import 'package:albums/src/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';

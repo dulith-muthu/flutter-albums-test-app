@@ -1,9 +1,12 @@
 import 'package:albums/src/models/api/album.dart';
+import 'package:albums/src/models/api/post.dart';
 import 'package:albums/src/services/api/albums_service.dart';
+import 'package:albums/src/services/api/posts_api_service.dart';
 import 'package:albums/src/services/auth_service.dart';
 import 'package:albums/src/services/hardcoded_auth_service.dart';
 import 'package:albums/src/services/user_service.dart';
 import 'package:albums/src/views/home/albums/album_detail_view.dart';
+import 'package:albums/src/views/home/posts/post_detail_view.dart';
 import 'package:albums/src/views/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -29,6 +32,8 @@ class MyApp extends StatelessWidget {
         create: (context) => HardCodedAuthService(context.read<UserService>()));
     final albumsProvider = Provider<AlbumsApiService>(
         create: (context) => AlbumsApiService(context.read<UserService>()));
+    final postsProvider = Provider<PostsApiService>(
+        create: (context) => PostsApiService(context.read<UserService>()));
 
     final materialApp = ListenableBuilder(
       listenable: _settingsController,
@@ -60,7 +65,11 @@ class MyApp extends StatelessWidget {
                 case SettingsView.routeName:
                   return SettingsView(controller: _settingsController);
                 case AlbumDetailView.routeName:
-                  return AlbumDetailView(album: routeSettings.arguments as Album);
+                  return AlbumDetailView(
+                      album: routeSettings.arguments as Album);
+                case PostDetailView.routeName:
+                  return PostDetailView(
+                      post: routeSettings.arguments as Post);
                 case HomeView.routeName:
                 default:
                   return const HomeView();
@@ -72,7 +81,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MultiProvider(
-      providers: [userProvider, authProvider, albumsProvider],
+      providers: [userProvider, authProvider, albumsProvider, postsProvider],
       child: materialApp,
     );
   }

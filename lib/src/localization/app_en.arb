@@ -12,5 +12,6 @@
   "settingsTheme": "Theme",
   "settingsThemeSystem": "System Theme",
   "settingsThemeLight": "Light Theme",
-  "settingsThemeDark": "Dark Theme"
+  "settingsThemeDark": "Dark Theme",
+  "postComments": "Comments"
 }
