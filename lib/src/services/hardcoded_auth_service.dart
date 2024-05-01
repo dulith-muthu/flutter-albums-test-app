@@ -32,7 +32,7 @@ class HardCodedAuthService implements IAuthService {
             cred.username == credentials.username &&
             cred.password == credentials.password);
     if (authenticated == null) {
-      throw Exception('Invalid Credentials');
+      throw 'Invalid Credentials';
     }
 
     // replicating an authorize API call

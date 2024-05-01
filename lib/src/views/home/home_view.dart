@@ -1,5 +1,5 @@
 import 'package:albums/src/services/user_service.dart';
-import 'package:albums/src/views/home/albums/albums_view.dart';
+import 'package:albums/src/views/home/albums/album_list_component.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,14 +31,14 @@ class HomeView extends StatelessWidget {
           ],
           bottom: const TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.album)), // Albums tab
-              Tab(icon: Icon(Icons.post_add)), // Posts tab
+              Tab(icon: Icon(Icons.album), text: "Albums"),
+              Tab(icon: Icon(Icons.post_add), text: "Posts"),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
-            Center(child: AlbumsView()),
+            Center(child: AlbumsListComponent()),
             Center(child: Text('Posts Content')),
           ],
         ),

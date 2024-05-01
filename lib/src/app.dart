@@ -1,7 +1,9 @@
+import 'package:albums/src/models/api/album.dart';
 import 'package:albums/src/services/api/albums_service.dart';
 import 'package:albums/src/services/auth_service.dart';
 import 'package:albums/src/services/hardcoded_auth_service.dart';
 import 'package:albums/src/services/user_service.dart';
+import 'package:albums/src/views/home/albums/album_detail_view.dart';
 import 'package:albums/src/views/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -57,6 +59,8 @@ class MyApp extends StatelessWidget {
               switch (routeSettings.name) {
                 case SettingsView.routeName:
                   return SettingsView(controller: _settingsController);
+                case AlbumDetailView.routeName:
+                  return AlbumDetailView(album: routeSettings.arguments as Album);
                 case HomeView.routeName:
                 default:
                   return const HomeView();

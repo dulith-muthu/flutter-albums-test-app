@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
 
   Future<bool> _updateError(Object? error, StackTrace stackTrace) async {
     setState(() {
-      _loginError = 'Invalid Credentials';
+      _loginError = error.toString();
     });
     return true;
   }
@@ -93,6 +93,7 @@ class _LoginViewState extends State<LoginView> {
         LoginCredentials(username: _username.text, password: _password.text);
     setState(() {
       _isLoading = true;
+      _loginError = '';
     });
     authService
         .login(credentials)

@@ -3,16 +3,16 @@ final class ApiHelper {
   static const String _host = "jsonplaceholder.typicode.com";
 
   static Uri buildUri(
-      {required String path,
-      required int userId,
-      Map<String, dynamic>? queryParams}) {
-    var qp = queryParams ?? {};
-    qp.addEntries({"userId": "$userId"}.entries);
+      {required String path, int? userId, Map<String, dynamic>? queryParams}) {
+    if (userId != null) {
+      queryParams = queryParams ?? {};
+      queryParams.addEntries({"userId": "$userId"}.entries);
+    }
     var uri = Uri(
       scheme: _scheme,
       host: _host,
       path: path,
-      queryParameters: qp,
+      queryParameters: queryParams,
     );
     return uri;
   }
