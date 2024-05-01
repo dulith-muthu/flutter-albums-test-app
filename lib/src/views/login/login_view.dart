@@ -1,4 +1,4 @@
-import 'package:albums/src/login/login_credentials.dart';
+import 'package:albums/src/models/login_credentials.dart';
 import 'package:albums/src/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -50,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 24), // Add more spacing
                 ElevatedButton.icon(
-                  onPressed: () => _isLoading ? null : login(context),
+                  onPressed: () => _isLoading ? null : _login(context),
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(16.0)),
                   icon: _isLoading
@@ -79,16 +79,16 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  Future<bool> updateError(Object? error, StackTrace stackTrace) async {
+  Future<bool> _updateError(Object? error, StackTrace stackTrace) async {
     setState(() {
       _loginError = 'Invalid Credentials';
     });
     return true;
   }
 
-  void login(BuildContext context) {
+  void _login(BuildContext context) {
     if (_isLoading) return;
-    final authService = context.read<AuthService>();
+    final authService = context.read<IAuthService>();
     final credentials =
         LoginCredentials(username: _username.text, password: _password.text);
     setState(() {
@@ -97,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
     authService
         .login(credentials)
         .then((value) => value)
-        .onError(updateError)
+        .onError(_updateError)
         .whenComplete(() => setState(() {
               _isLoading = false;
             }));

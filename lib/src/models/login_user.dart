@@ -1,13 +1,13 @@
-class LoginUser {
+final class LoginUser {
   const LoginUser({
+    required this.userId,
     required this.username,
-    required this.firstName,
-    required this.lastName,
+    required this.name,
     required this.token,
   });
 
+  final int userId;
   final String username;
-  final String firstName;
-  final String lastName;
+  final String name;
   final String token;
 }

@@ -10,10 +10,12 @@ environment:
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies:
+  collection: ^1.18.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  http: ^1.2.1
   provider: ^6.1.2
 
 dev_dependencies:

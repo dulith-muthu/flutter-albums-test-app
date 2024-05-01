@@ -1,15 +1,20 @@
-import 'package:albums/src/login/login_user.dart';
+import 'package:albums/src/models/login_user.dart';
 import 'package:flutter/material.dart';
 
 class UserService with ChangeNotifier {
-  LoginUser? loggedUser;
+  LoginUser? _loggedUser;
   
   void setLoggedUser(LoginUser? user) {
-    loggedUser = user;
+    _loggedUser = user;
     notifyListeners();
   }
 
   bool isAuthenticated() {
-    return loggedUser != null;
+    return _loggedUser != null;
   }
+
+  int get userId => _loggedUser != null ? _loggedUser!.userId : 0;
+  String get name => _loggedUser != null ? _loggedUser!.name : "";
+  String get username => _loggedUser != null ? _loggedUser!.username : "";
+  String get token => _loggedUser != null ? _loggedUser!.token : "";
 }

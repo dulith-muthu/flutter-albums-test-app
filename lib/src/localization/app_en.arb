@@ -1,10 +1,16 @@
 {
   "@@locale": "en",
-  "appTitle": "albums",
+  "appTitle": "Albums",
   "@appTitle": {
     "description": "The title of the application"
   },
   "loginUsername": "Username or Email",
   "loginPassword": "Password",
-  "loginButton": "Login"
+  "loginButton": "Login",
+  "logoutButton": "Logout",
+  "settings": "Settings",
+  "settingsTheme": "Theme",
+  "settingsThemeSystem": "System Theme",
+  "settingsThemeLight": "Light Theme",
+  "settingsThemeDark": "Dark Theme"
 }

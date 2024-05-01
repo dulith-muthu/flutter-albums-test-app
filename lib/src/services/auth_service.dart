@@ -1,6 +1,6 @@
-import 'package:albums/src/login/login_credentials.dart';
+import 'package:albums/src/models/login_credentials.dart';
 
-abstract class AuthService {
+abstract interface class IAuthService {
   Future<bool> login(LoginCredentials credentials);
   Future<bool> logout();
 }
